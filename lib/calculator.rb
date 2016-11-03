@@ -22,4 +22,8 @@ module Calculator
     end
   end
 
+  def percentage(numerator, denominator)
+    (BigDecimal(numerator) / BigDecimal(denominator)) * 100
+  end
+
 end

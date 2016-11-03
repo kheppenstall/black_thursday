@@ -55,13 +55,20 @@ module MerchantAnalyst
     standard_deviation(merchant_invoice_count).round(2).to_f
   end
 
-  def top_merchants_by_invoice_count
+  def invoice_threshold(multiplier)
     standard_deviation = average_invoices_per_merchant_standard_deviation
-    threshold = average_invoices_per_merchant + standard_deviation * 2
+    average_invoices_per_merchant + standard_deviation * multiplier
+  end
+
+  def top_merchants_by_invoice_count
+    threshold = invoice_threshold(2)
     merchants.find_all {|merchant| invoice_count(merchant) > threshold}
   end
 
-
+  def bottom_merchants_by_invoice_count
+    threshold = invoice_threshold(-2)
+    merchants.find_all {|merchant| invoice_count(merchant) < threshold}
+  end
 
 end
 
