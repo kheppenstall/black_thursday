@@ -47,6 +47,13 @@ class MerchantAnalystTest < Minitest::Test
     assert merchants.all? {|merchant| merchant.invoices.length > threshold}
   end
 
+  def test_finds_bottom_merchants_by_invoice_count
+    threshold = 0
+    merchants = sales_analyst.bottom_merchants_by_invoice_count
+    assert_equal 0, merchants.length
+    assert merchants.all? {|merchant| merchant.invoices.length < threshold}
+  end
+
 end
 
 
