@@ -7,7 +7,7 @@ class SalesEngine
   attr_reader :merchants,
               :items,
               :invoices
-  
+
   def self.from_csv(files)
     new(files)
   end
