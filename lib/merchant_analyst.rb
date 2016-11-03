@@ -61,11 +61,13 @@ module MerchantAnalyst
   end
 
   def top_merchants_by_invoice_count
-    merchants.find_all {|merchant| invoice_count(merchant) > invoice_threshold(2)}
+    threshold = invoice_threshold(2)
+    merchants.find_all {|merchant| invoice_count(merchant) > threshold}
   end
 
   def bottom_merchants_by_invoice_count
-    merchants.find_all {|merchant| invoice_count(merchant) < invoice_threshold(-2)}
+    threshold = invoice_threshold(-2)
+    merchants.find_all {|merchant| invoice_count(merchant) < threshold}
   end
 
 end
