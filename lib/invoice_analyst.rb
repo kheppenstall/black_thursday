@@ -3,15 +3,15 @@ module InvoiceAnalyst
   def invoice_repo
     sales_engine.invoices
   end
-  
+
   def invoices
     invoice_repo.all
   end
-  
+
   def total_invoice_count
     invoices.length
   end
-  
+
   def invoice_status(status)
     invoices_of_status = invoice_repo.find_all_by_status(status)
     status_count = invoices_of_status.length
@@ -42,7 +42,7 @@ module InvoiceAnalyst
     average = average(invoice_day_counts)
     average + standard_deviation
   end
-  
+
   def top_days_by_invoice_count
     invoice_days_nums = invoices.map {|invoice| invoice.created_at.wday}
     invoice_days = invoice_days(invoice_days_nums)
