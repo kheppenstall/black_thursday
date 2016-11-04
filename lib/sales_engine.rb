@@ -75,4 +75,10 @@ class SalesEngine
     items.find_all_by_merchant_id(merchant_id)
   end
 
+  def find_customers_by_merchant_id(merchant_id)
+    invoices = find_invoices_by_merchant_id(merchant_id)
+    customer_ids = invoices.map {|invoice| invoice.customer_id}
+    customer_ids.map {|customer_id| customers.find_by_id(customer_id)}.uniq
+  end
+
 end

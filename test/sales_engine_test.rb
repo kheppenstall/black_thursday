@@ -40,7 +40,7 @@ class SalesEngineTest < Minitest::Test
     assert_kind_of CustomerRepository, sales_engine.customers
   end
 
-  def test_customers_returns_a_customer_repository_object
+  def test_transactions_returns_a_transaction_repository_object
     assert_kind_of TransactionRepository, sales_engine.transactions
   end
 

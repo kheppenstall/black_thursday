@@ -88,6 +88,12 @@ class MerchantRepositoryTest < Minitest::Test
     merchant_repository.parent.verify
   end
 
+  def test_find_customers_calls_find_customers_by_merchant_id_on_parent
+    merchant_repository.parent.expect(:find_customers_by_merchant_id, nil, [3333])
+    merchant_repository.find_customers(3333)
+    merchant_repository.parent.verify
+  end
+
   def test_inspect_returns_class_and_size
     inspection = "#<MerchantRepository 20 rows>"
     assert_equal inspection, merchant_repository.inspect
