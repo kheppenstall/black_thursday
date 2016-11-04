@@ -23,7 +23,7 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_all_includes_all_transactions
-  	assert_equal 36, transaction_repository.all.length
+  	assert_equal 37, transaction_repository.all.length
   end
 
   def test_find_by_id_finds_transaction_with_matching_id
@@ -52,24 +52,24 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_find_all_by_credit_card_number_returns_array_with_one_matching_cc_number
-    transaction = transaction_repository.find_all_by_credit_card_number("4890371279632775")
+    transaction = transaction_repository.find_all_by_credit_card_number(4890371279632775)
     assert_equal 1, transaction.length
     assert_equal 20, transaction.first.id
   end
 
   def test_find_all_by_credit_card_number_returns_empty_array_when_there_are_no_matches
-    transactions = transaction_repository.find_all_by_credit_card_number("9999999999999999")
+    transactions = transaction_repository.find_all_by_credit_card_number(9999999999999999)
     assert_equal [], transactions
   end
 
-  # def test_find_all_by_credit_card_number_returns_array_with_all_cc_number_matches
-  #   transactions = transaction_repository.find_all_by_credit_card_number("9999999999999999")
-  #   assert_equal 0, transactions.length
-  # end
+  def test_find_all_by_credit_card_number_returns_array_with_all_cc_number_matches
+    transactions = transaction_repository.find_all_by_credit_card_number(4055564081112246)
+    assert_equal 2, transactions.length
+  end
 
   def test_find_all_by_result_finds_all_successful_transactions
     transactions = transaction_repository.find_all_by_result("success")
-    assert_equal 30, transactions.length
+    assert_equal 31, transactions.length
   end
 
   def test_find_all_by_result_finds_all_failed_transactions
@@ -80,6 +80,17 @@ class TransactionRepositoryTest < Minitest::Test
   def test_find_all_by_result_without_match_returns_empty_array
   	transactions = transaction_repository.find_all_by_result("declined")
   	assert_equal [], transactions
+  end
+
+  def test_transaction_repo_knows_its_parent
+    transaction_repository.parent.expect(:find_invoice_by_invoice_id, nil, [3333])
+    transaction_repository.find_invoice(3333)
+    transaction_repository.parent.verify
+  end
+
+  def test_inspect_returns_class_and_size
+    inspection = "#<TransactionRepository 37 rows>"
+    assert_equal inspection, transaction_repository.inspect
   end
 
 end

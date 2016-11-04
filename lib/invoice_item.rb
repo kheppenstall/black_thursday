@@ -27,7 +27,7 @@ class InvoiceItem
     unit_price.to_f
   end
 
-  def items(item_id)
+  def items
     parent.find_items(item_id)
   end
 

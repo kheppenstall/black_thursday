@@ -7,8 +7,7 @@ class CustomerRepositoryTest < Minitest::Test
 
   def setup
     file = "./test/data_fixtures/customers_fixture.csv"
-    @customer_repository = CustomerRepository.new(Minitest::Mock.new)
-    @customer_repository.from_csv(file)
+    @customer_repository = CustomerRepository.new(file, Minitest::Mock.new)
   end
 
   def test_customer_repo_exists

@@ -3,6 +3,7 @@ require_relative 'item_repository'
 require_relative 'invoice_repository'
 require_relative 'invoice_item_repository'
 require_relative 'customer_repository'
+require_relative 'transaction_repository'
 
 class SalesEngine
 
@@ -10,7 +11,8 @@ class SalesEngine
               :items,
               :invoices,
               :invoice_items,
-              :customers
+              :customers,
+              :transactions
 
   def self.from_csv(files)
     new(files)
@@ -22,19 +24,24 @@ class SalesEngine
     @invoices = create_invoice_repository(files)
     @invoice_items = create_invoice_item_repository(files)
     @customers = create_customer_repository(files)
+    @transactions = create_transaction_repository(files)
+  end
+
+  def create_transaction_repository(files)
+    if files.include?(:transactions)
+      TransactionRepository.new(files[:transactions], self)
+    end
   end
 
   def create_invoice_item_repository(files)
     if files.include?(:invoice_items)
-      InvoiceItemRepository.new(files[:invoice_items])
+      InvoiceItemRepository.new(files[:invoice_items], self)
     end
   end
 
   def create_customer_repository(files)
     if files.include?(:customers)
-      customer_repo = CustomerRepository.new(self)
-      customer_repo.from_csv(files[:customers])
-      customer_repo
+      customer_repo = CustomerRepository.new(files[:customers], self)
     end
   end
 

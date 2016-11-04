@@ -18,8 +18,8 @@ class Customer
       @parent     = parent
   end
 
-  def merchants(customer_id)
-    parent.find_merchants(customer_id)
+  def merchants
+    parent.find_merchants(id)
   end
 
 end

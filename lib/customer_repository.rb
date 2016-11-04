@@ -8,20 +8,16 @@ class CustomerRepository
   attr_reader :all,
               :parent
 
-  def initialize(parent = nil)
-    @parent = parent
-    @all = []
-  end
-
-  def from_csv(file)
+  def initialize(file, parent = nil)
     @all = parse(file).map do |row|
       Customer.new({:id           => row[:id],
                     :first_name   => row[:first_name],
                     :last_name    => row[:last_name],
                     :created_at   => row[:created_at],
-                    :updated_at   => row[:updated_at]
-                    })
+                    :updated_at   => row[:updated_at]},
+                    self)
     end
+    @parent = parent
   end
 
   def find_by_id(id)

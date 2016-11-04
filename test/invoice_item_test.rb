@@ -50,8 +50,8 @@ class InvoiceItemTest < Minitest::Test
   end
 
   def test_invoice_item_calls_parent
-    invoice_item.parent.expect(:find_items, nil, [3333])
-    invoice_item.items(3333)
+    invoice_item.parent.expect(:find_items, nil, [7])
+    invoice_item.items
     invoice_item.parent.verify
   end
 
