@@ -10,7 +10,8 @@ class SalesEngineTest < Minitest::Test
       :items => "./test/data_fixtures/items_fixture.csv",
       :merchants => "./test/data_fixtures/merchants_fixture.csv",
       :invoices => "./test/data_fixtures/invoices_fixture.csv",
-      :invoice_items => "./test/data_fixtures/invoice_items_fixture.csv"
+      :invoice_items => "./test/data_fixtures/invoice_items_fixture.csv",
+      :customers => "./test/data_fixtures/customers_fixture.csv"
     })
   end
   
@@ -32,6 +33,10 @@ class SalesEngineTest < Minitest::Test
 
   def test_invoice_items_returns_an_invoice_item_repository_object
     assert_kind_of InvoiceItemRepository, sales_engine.invoice_items
+  end
+
+  def test_customers_returns_a_customer_repository_object
+    assert_kind_of CustomerRepository, sales_engine.customers
   end
 
 end

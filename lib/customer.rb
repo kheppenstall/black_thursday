@@ -19,7 +19,7 @@ class Customer
   end
 
   def merchants(customer_id)
-    parent.find_merchants_by_customer_id(customer_id)
+    parent.find_merchants(customer_id)
   end
 
 end

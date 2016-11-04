@@ -40,7 +40,7 @@ class CustomerTest < Minitest::Test
   end
 
   def test_customer_knows_its_parent
-    customer.parent.expect(:find_merchants_by_customer_id, nil, [3333])
+    customer.parent.expect(:find_merchants, nil, [3333])
     customer.merchants(3333)
     customer.parent.verify
   end
