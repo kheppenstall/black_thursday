@@ -10,6 +10,7 @@ class CustomerRepository
 
   def initialize(parent = nil)
     @parent = parent
+    @all = []
   end
 
   def from_csv(file)
