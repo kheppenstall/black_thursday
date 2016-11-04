@@ -41,7 +41,7 @@ class SalesEngine
 
   def create_customer_repository(files)
     if files.include?(:customers)
-      customer_repo = CustomerRepository.new(files[:customers], self)
+      CustomerRepository.new(files[:customers], self)
     end
   end
 
@@ -63,12 +63,16 @@ class SalesEngine
     end
   end
 
-  def find_by_merchant_id(merchant_id)
+  def find_merchant_by_merchant_id(merchant_id)
     merchants.find_by_id(merchant_id)
   end
 
   def find_invoices_by_merchant_id(merchant_id)
     invoices.find_all_by_merchant_id(merchant_id)
+  end
+
+  def find_invoices_by_customer_id(customer_id)
+    invoices.find_all_by_customer_id(customer_id)
   end
 
   def find_items_by_merchant_id(merchant_id)
@@ -79,6 +83,12 @@ class SalesEngine
     invoices = find_invoices_by_merchant_id(merchant_id)
     customer_ids = invoices.map {|invoice| invoice.customer_id}
     customer_ids.map {|customer_id| customers.find_by_id(customer_id)}.uniq
+  end
+
+  def find_merchants_by_customer_id(customer_id)
+    invoices = find_invoices_by_customer_id(customer_id)
+    merchant_ids = invoices.map {|invoice| invoice.merchant_id}
+    merchant_ids.map {|merchant_id| merchants.find_by_id(merchant_id)}
   end
 
 end

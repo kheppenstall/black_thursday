@@ -124,7 +124,7 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_item_repo_knows_its_parent
-    item_repository.parent.expect(:find_by_merchant_id, nil, [3333])
+    item_repository.parent.expect(:find_merchant_by_merchant_id, nil, [3333])
     item_repository.find_merchant(3333)
     item_repository.parent.verify
   end

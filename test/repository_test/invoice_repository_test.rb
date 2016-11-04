@@ -83,7 +83,7 @@ class InvoiceRepositoryTest < Minitest::Test
   end
 
   def test_invoice_repo_knows_its_parent
-    invoice_repository.parent.expect(:find_by_merchant_id, nil, [3333])
+    invoice_repository.parent.expect(:find_merchant_by_merchant_id, nil, [3333])
     invoice_repository.find_merchant(3333)
     invoice_repository.parent.verify
   end

@@ -13,7 +13,7 @@ class CustomerMerchantIntegratedTest < Minitest::Test
     })
   end
 
-  def test_merchants_know_their_customers
+  def test_merchant_knows_its_customers
     merchant = sales_engine.merchants.find_by_id(12334195)
     customers = merchant.customers
     assert_equal 13, customers.length
@@ -26,4 +26,17 @@ class CustomerMerchantIntegratedTest < Minitest::Test
     assert_equal [], customers
   end
 
+  def test_customer_knows_its_merchants
+    customer = sales_engine.customers.find_by_id(200)
+    merchants = customer.merchants
+    assert_equal 1, merchants.length
+    assert merchants.any? {|merchant| merchant.id == 12334195}
+  end
+
+  def test_customer_with_no_merchant_returns_nil_as_merchant_for_each_invoice
+    customer = sales_engine.customers.find_by_id(2)
+    merchants = customer.merchants
+    assert merchants.all? {|merchant| merchant == nil}
+  end
+    
 end
