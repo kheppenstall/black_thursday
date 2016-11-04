@@ -19,7 +19,7 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_all_includes_all_25_item_objects_from_items_fixture
-    assert_equal 25, item_repository.all.length
+    assert_equal 26, item_repository.all.length
   end
 
   def test_find_by_id_returns_item_instance_with_matching_id
@@ -107,7 +107,7 @@ class ItemRepositoryTest < Minitest::Test
   def test_find_all_by_price_in_range_returns_one_price
     price_range = (0..6)
     items = item_repository.find_all_by_price_in_range(price_range)
-    assert_equal 1, items.length
+    assert_equal 2, items.length
     assert items.one? {|item| item.id == 263397163}
   end
 
@@ -120,7 +120,7 @@ class ItemRepositoryTest < Minitest::Test
   def test_find_all_by_price_in_range_with_multiple_matches_returns_multiple_items
     price_range = (0..10)
     items = item_repository.find_all_by_price_in_range(price_range)
-    assert_equal 3, items.length
+    assert_equal 4, items.length
   end
 
   def test_item_repo_knows_its_parent
@@ -130,7 +130,7 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_inspect_returns_class_and_size
-    inspection = "#<ItemRepository 25 rows>"
+    inspection = "#<ItemRepository 26 rows>"
     assert_equal inspection, item_repository.inspect
   end
 

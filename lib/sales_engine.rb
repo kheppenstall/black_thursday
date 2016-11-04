@@ -91,4 +91,14 @@ class SalesEngine
     merchant_ids.map {|merchant_id| merchants.find_by_id(merchant_id)}
   end
 
+  def find_invoice_items_by_invoice_id(invoice_id)
+    invoice_items.find_all_by_invoice_id(invoice_id)
+  end
+
+  def find_items_by_invoice_id(invoice_id)
+    invoice_items = find_invoice_items_by_invoice_id(invoice_id)
+    item_ids = invoice_items.map {|invoice_item| invoice_item.item_id}
+    item_ids.map {|item_id| items.find_by_id(item_id)}
+  end
+
 end

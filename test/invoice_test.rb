@@ -50,4 +50,10 @@ class InvoiceTest < Minitest::Test
     invoice.parent.verify
   end
 
+  def test_items_calls_parent
+    invoice.parent.expect(:find_items, nil, [6])
+    invoice.items
+    invoice.parent.verify
+  end
+
 end
