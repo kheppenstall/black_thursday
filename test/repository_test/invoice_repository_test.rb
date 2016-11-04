@@ -88,4 +88,9 @@ class InvoiceRepositoryTest < Minitest::Test
     invoice_repository.parent.verify
   end
 
+  def test_inspect_returns_class_and_size
+    inspection = "#<InvoiceRepository 56 rows>"
+    assert_equal inspection, invoice_repository.inspect
+  end
+
 end

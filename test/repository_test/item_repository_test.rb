@@ -129,4 +129,9 @@ class ItemRepositoryTest < Minitest::Test
     item_repository.parent.verify
   end
 
+  def test_inspect_returns_class_and_size
+    inspection = "#<ItemRepository 25 rows>"
+    assert_equal inspection, item_repository.inspect
+  end
+
 end

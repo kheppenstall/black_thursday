@@ -25,4 +25,9 @@ class CalculatorTest < Minitest::Test
     assert_equal 0, standard_deviation(set)
   end
 
+  def test_it_returns_0_when_calculating_standard_deviation_of_set_of_1
+    set = [1]
+    assert_equal 0, standard_deviation(set)
+  end
+
 end
