@@ -26,10 +26,10 @@ class TransactionRepositoryTest < Minitest::Test
   	assert_equal 36, transaction_repository.all.length
   end
 
-  # def test_find_by_id_finds_transaction_with_matching_id
-  # 	transaction = transaction_repository.find_by_id(26)
-  #   assert_equal 1, transaction.id
-  # end
+  def test_find_by_id_finds_transaction_with_matching_id
+  	transaction = transaction_repository.find_by_id(7)
+    assert_equal 1298, transaction.invoice_id
+  end
 
   def test_find_by_id_returns_nil_when_there_is_no_transaction_matching_id
     assert_nil transaction_repository.find_by_id(999999999)
