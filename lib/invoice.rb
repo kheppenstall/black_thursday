@@ -36,4 +36,18 @@ class Invoice
     parent.find_customer(customer_id)
   end
 
+  def successful_transactions?
+    transactions.all? {|transaction| transaction.result == "success"}
+  end
+
+  def is_paid_in_full?
+    successful_transactions? && !transactions.empty?
+  end
+
+  def total
+    if is_paid_in_full?
+      items.reduce(0) {|total, item| total += item.unit_price}.round(2)
+    end
+  end
+
 end
