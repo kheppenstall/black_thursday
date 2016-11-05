@@ -100,6 +100,12 @@ class InvoiceRepositoryTest < Minitest::Test
     invoice_repository.parent.verify
   end
 
+  def test_find_invoice_items_calls_parent
+    invoice_repository.parent.expect(:find_invoice_items_by_invoice_id, nil, [3])
+    invoice_repository.find_invoice_items(3)
+    invoice_repository.parent.verify
+  end
+
   def test_inspect_returns_class_and_size
     inspection = "#<InvoiceRepository 56 rows>"
     assert_equal inspection, invoice_repository.inspect

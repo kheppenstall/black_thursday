@@ -24,6 +24,10 @@ class Invoice
     parent.find_merchant(merchant_id)
   end
 
+  def invoice_items
+    parent.find_invoice_items(id)
+  end
+
   def items
     parent.find_items(id)
   end
@@ -45,8 +49,8 @@ class Invoice
   end
 
   def total
-    if is_paid_in_full?
-      items.reduce(0) {|total, item| total += item.unit_price}.round(2)
+    invoice_items.reduce(0) do |total, invoice_item|
+      total += invoice_item.unit_price * invoice_item.quantity
     end
   end
 

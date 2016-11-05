@@ -23,14 +23,14 @@ class InvoiceIntegratedTest < Minitest::Test
     refute invoice.is_paid_in_full?
   end
 
-  def test_total_returns_dollar_amount_of_invoice_for_zero_dollars
+  def test_total_returns_zero_when_invoice_has_no_items
     invoice = sales_engine.invoices.find_by_id(4966)
     assert_equal 0, invoice.total
   end
 
-  def test_total_returns_dollar_amount_of_invoice
+  def test_total_returns_total_when_invoice_has_items
     invoice = sales_engine.invoices.find_by_id(26)
-    assert_equal 0, invoice.total
+    assert_equal 15956.23, invoice.total
   end
 
 end
