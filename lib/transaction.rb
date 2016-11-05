@@ -24,7 +24,7 @@ class Transaction
 
 	def invoice
 		parent.find_invoice(invoice_id)
-	end	
+	end
 
 end
 

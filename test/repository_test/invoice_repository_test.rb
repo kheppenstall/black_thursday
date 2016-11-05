@@ -82,9 +82,21 @@ class InvoiceRepositoryTest < Minitest::Test
     assert_equal 6, invoices.length
   end
 
-  def test_invoice_repo_knows_its_parent
-    invoice_repository.parent.expect(:find_merchant_by_merchant_id, nil, [3333])
-    invoice_repository.find_merchant(3333)
+  def test_find_merchant_calls_parent
+    invoice_repository.parent.expect(:find_merchant_by_merchant_id, nil, [3])
+    invoice_repository.find_merchant(3)
+    invoice_repository.parent.verify
+  end
+
+  def test_find_customer_calls_parent
+    invoice_repository.parent.expect(:find_customer_by_customer_id, nil, [3])
+    invoice_repository.find_customer(3)
+    invoice_repository.parent.verify
+  end
+
+  def test_find_transactions_calls_parent
+    invoice_repository.parent.expect(:find_transactions_by_invoice_id, nil, [3])
+    invoice_repository.find_transactions(3)
     invoice_repository.parent.verify
   end
 

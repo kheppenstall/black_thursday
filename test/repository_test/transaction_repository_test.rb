@@ -4,8 +4,8 @@ require_relative '../../lib/transaction_repository'
 class TransactionRepositoryTest < Minitest::Test
 
 	attr_reader :transaction_repository
-
-	def setup
+  
+  def setup
 		file = "./test/data_fixtures/transactions_fixture.csv"
     @transaction_repository = TransactionRepository.new(file, Minitest::Mock.new)
   end

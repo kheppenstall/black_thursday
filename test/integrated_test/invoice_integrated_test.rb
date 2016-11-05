@@ -21,5 +21,24 @@ class InvoiceIntegratedTest < Minitest::Test
     assert_equal 8, items.length
     assert items.any? {|item| item.id == 263519844}
   end
+
+  def test_transactions_knows_its_invoice
+    transaction = sales_engine.transactions.find_by_id(116)
+    invoice = transaction.invoice
+    assert_equal 26, invoice.id
+  end
+
+  def test_invoice_knows_its_transactions
+    invoice = sales_engine.invoices.find_by_id(26)
+    transactions = invoice.transactions
+    assert_equal 2, transactions.length
+    assert transactions.any? {|transaction| transaction.id == 116}
+  end
+
+  def test_invoice_knows_its_customer
+    invoice = sales_engine.invoices.find_by_id(26)
+    customer = invoice.customer
+    assert_equal 6, customer.id 
+  end
   
 end
