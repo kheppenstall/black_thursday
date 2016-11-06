@@ -44,10 +44,6 @@ module SalesEngineFinders
     customers.find_by_id(customer_id)
   end
 
-  def find_invoice_items_by_invoice_id(invoice_id)
-    invoice_items.find_all_by_invoice_id(invoice_id)
-  end
-
   def find_items_by_invoice_id(invoice_id)
     invoice_items = find_invoice_items_by_invoice_id(invoice_id)
     item_ids = invoice_items.map {|invoice_item| invoice_item.item_id}
