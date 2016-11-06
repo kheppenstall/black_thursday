@@ -38,12 +38,28 @@ class InvoiceRepository
     all.find_all {|invoice| invoice.status == status}
   end
 
-  def inspect
-    "#<#{self.class} #{@all.size} rows>"
+  def find_merchant(merchant_id)
+    parent.find_merchant_by_merchant_id(merchant_id)
   end
 
-  def find_merchant(merchant_id)
-    parent.find_by_merchant_id(merchant_id)
+  def find_customer(customer_id)
+    parent.find_customer_by_customer_id(customer_id)
+  end
+
+  def find_transactions(invoice_id)
+    parent.find_transactions_by_invoice_id(invoice_id)
+  end
+
+  def find_items(invoice_id)
+    parent.find_items_by_invoice_id(invoice_id)
+  end
+
+  def find_invoice_items(invoice_id)
+    parent.find_invoice_items_by_invoice_id(invoice_id)
+  end
+
+  def inspect
+    "#<#{self.class} #{@all.size} rows>"
   end
 
 end

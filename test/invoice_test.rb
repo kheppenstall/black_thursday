@@ -44,9 +44,33 @@ class InvoiceTest < Minitest::Test
     assert_equal Time.now.to_s, invoice.updated_at.to_s
   end
 
-  def test_invoice_calls_parent
+  def test_merchant_calls_parent
     invoice.parent.expect(:find_merchant, nil, [8])
     invoice.merchant
+    invoice.parent.verify
+  end
+
+  def test_items_calls_parent
+    invoice.parent.expect(:find_items, nil, [6])
+    invoice.items
+    invoice.parent.verify
+  end
+
+  def test_transactions_calls_parent
+    invoice.parent.expect(:find_transactions, nil, [6])
+    invoice.transactions
+    invoice.parent.verify
+  end
+
+  def test_customer_calls_parent
+    invoice.parent.expect(:find_customer, nil, [7])
+    invoice.customer
+    invoice.parent.verify
+  end
+
+  def test_invoice_items_calls_parent
+    invoice.parent.expect(:find_invoice_items, nil, [6])
+    invoice.invoice_items
     invoice.parent.verify
   end
 

@@ -52,7 +52,7 @@ class CustomerRepositoryTest < Minitest::Test
     assert_equal [], customers
   end
 
- def test_find_all_by_last_name_returns_customer_with_matching_last_name
+  def test_find_all_by_last_name_returns_customer_with_matching_last_name
     last_name = 'Ondricka'
     customers = customer_repository.find_all_by_last_name(last_name)
     assert_equal 1, customers.length

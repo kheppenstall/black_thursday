@@ -23,7 +23,7 @@ class InvoiceItemRepositoryTest < Minitest::Test
   end
 
   def test_all_includes_all_invoices_items
-    assert_equal 45, invoice_item_repository.all.length
+    assert_equal 51, invoice_item_repository.all.length
   end
 
   def test_find_by_id_finds_invoice_item_with_matching_id
@@ -66,7 +66,7 @@ class InvoiceItemRepositoryTest < Minitest::Test
 
   def test_inspect_returns_only_class_and_size
     inspection = invoice_item_repository.inspect
-    assert_equal "#<InvoiceItemRepository 45 rows>", inspection
+    assert_equal "#<InvoiceItemRepository 51 rows>", inspection
   end
 
   def test_invoice_item_repo_knows_its_parent
