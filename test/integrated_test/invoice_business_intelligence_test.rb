@@ -1,7 +1,7 @@
 require_relative '../test_helper'
 require_relative '../../lib/sales_engine'
 
-class InvoiceIntegratedTest < Minitest::Test
+class InvoiceBusinessIntelligenceTest < Minitest::Test
 
   attr_reader :sales_engine
 

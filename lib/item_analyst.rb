@@ -1,9 +1,5 @@
 module ItemAnalyst
 
-  def items
-    sales_engine.items.all
-  end
-
   def average_price(items)
     set = items.map {|item| item.unit_price}
     average(set).round(2)

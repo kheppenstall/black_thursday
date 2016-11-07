@@ -10,7 +10,7 @@ class MerchantRepository
 
   def initialize(file, parent = nil)
     @all = parse(file).map do |row|
-      Merchant.new({:id         => row[:id], 
+      Merchant.new({:id         => row[:id],
                     :name       => row[:name],
                     :created_at => row[:created_at]},
                     self)

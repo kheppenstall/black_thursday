@@ -94,6 +94,12 @@ class MerchantRepositoryTest < Minitest::Test
     merchant_repository.parent.verify
   end
 
+  def test_merchants_registered_in_month_returns_merchants
+    month = "June"
+    merchants = merchant_repository.merchants_registered_in_month(month)
+    assert_equal 3, merchants.length
+  end
+
   def test_inspect_returns_class_and_size
     inspection = "#<MerchantRepository 20 rows>"
     assert_equal inspection, merchant_repository.inspect

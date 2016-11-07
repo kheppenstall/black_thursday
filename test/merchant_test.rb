@@ -3,39 +3,39 @@ require_relative '../lib/merchant'
 
 class MerchantTest < Minitest::Test
 
+  attr_reader :merchant
+
+  def setup
+    @merchant = Merchant.new({:id         => '5', 
+                              :name       => "Turing School",
+                              :created_at => Time.now.to_s},
+                              Minitest::Mock.new)
+  end
+
   def test_merchant_exists
-    assert Merchant.new({})
+    assert merchant
   end
 
   def test_merchant_knows_id
-    merchant = Merchant.new({:id => '5', :name => "Turing School"})
     assert_equal 5, merchant.id
   end
 
-  def test_merchant_knows_a_differentid
-    merchant = Merchant.new({:id => '3', :name => "Turing School"})
-    assert_equal 3, merchant.id
-  end
-
   def test_merchant_knows_name
-    merchant = Merchant.new({:id => '5', :name => "Turing School"})
     assert_equal "Turing School", merchant.name
   end
 
-  def test_merchant_knows_a_different_name
-    merchant = Merchant.new({:id => '5', :name => "Terd School"})
-    assert_equal "Terd School", merchant.name
+  def test_merchant_knows_when_it_was_created
+    time = Time.now
+    assert_equal time.to_s, merchant.created_at.to_s
   end
 
   def test_merchant_knows_its_parent
-    merchant = Merchant.new({:id => '5', :name => "Terd School"}, Minitest::Mock.new)
     merchant.parent.expect(:find_invoices, nil, [5])
     merchant.invoices
     merchant.parent.verify
   end
 
   def test_merchant_knows_its_customer
-    merchant = Merchant.new({:id => '5', :name => "Terd School"}, Minitest::Mock.new)
     merchant.parent.expect(:find_customers, nil, [5])
     merchant.customers
     merchant.parent.verify

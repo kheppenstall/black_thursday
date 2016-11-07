@@ -1,32 +1,9 @@
 module InvoiceAnalyst
 
-  def invoice_repo
-    sales_engine.invoices
-  end
-
-  def invoices
-    invoice_repo.all
-  end
-
-  def total_invoice_count
-    invoices.length
-  end
-
   def invoice_status(status)
-    invoices_of_status = invoice_repo.find_all_by_status(status)
+    invoices_of_status = invoice_repository.find_all_by_status(status)
     status_count = invoices_of_status.length
     percentage(status_count, total_invoice_count).round(2).to_f
-  end
-
-  def days_of_the_week
-    {"Sunday" => 0,
-     "Monday" => 1,
-     "Tuesday" => 2,
-     "Wednesday" => 3,
-     "Thursday" => 4,
-     "Friday" => 5,
-     "Saturday" => 6
-    }
   end
 
   def invoice_days(invoice_days_nums)

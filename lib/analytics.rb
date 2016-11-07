@@ -1,17 +1,5 @@
 module Analytics
 
-  def merchant_repository
-    sales_engine.merchants
-  end
-
-  def invoice_repository
-    sales_engine.invoices
-  end
-
-  def item_repository
-    sales_engine.items
-  end
-
   def paid_invoices_by_merchant(merchant)
     merchant.invoices.find_all {|invoice| invoice.is_paid_in_full?}
   end
@@ -71,8 +59,10 @@ module Analytics
 
   def top_items_from_frequencies(frequencies)
     max_count = frequencies.values.max
-    item_ids = frequencies.keys.find_all {|item_id| frequencies[item_id] == max_count}
-    item_repository.all.find_all {|item| item_ids.include?(item.id)} 
+    item_ids = frequencies.keys.find_all do |item_id|
+      frequencies[item_id] == max_count
+    end
+    item_repository.all.find_all {|item| item_ids.include?(item.id)}
   end
 
   def most_sold_item_for_merchant(merchant_id)

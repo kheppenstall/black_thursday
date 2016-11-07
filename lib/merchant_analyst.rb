@@ -1,13 +1,5 @@
 module MerchantAnalyst
 
-  def merchants
-    sales_engine.merchants.all
-  end
-
-  def item_count(merchant)
-    merchant.items.length
-  end
-
   def merchant_item_counts
     merchants.map {|merchant| BigDecimal(item_count(merchant))}
   end
