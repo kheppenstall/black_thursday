@@ -10,7 +10,10 @@ class MerchantRepository
 
   def initialize(file, parent = nil)
     @all = parse(file).map do |row|
-      Merchant.new({:id => row[:id], :name => row[:name]}, self)
+      Merchant.new({:id         => row[:id],
+                    :name       => row[:name],
+                    :created_at => row[:created_at]},
+                    self)
     end
     @parent = parent
   end
@@ -26,6 +29,12 @@ class MerchantRepository
   def find_all_by_name(name_fragment)
     all.find_all do |merchant|
       merchant.name.upcase.include?(name_fragment.upcase)
+    end
+  end
+
+  def merchants_registered_in_month(month)
+    all.find_all do |merchant|
+      merchant.created_at.strftime("%B") == month
     end
   end
 

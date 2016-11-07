@@ -106,6 +106,12 @@ class InvoiceRepositoryTest < Minitest::Test
     invoice_repository.parent.verify
   end
 
+  def test_find_all_by_date_returns_invoices_created_on_date
+    date = Time.parse("2008-04-04")
+    invoices = invoice_repository.find_all_by_date(date)
+    assert_equal 1, invoices.length
+  end
+
   def test_inspect_returns_class_and_size
     inspection = "#<InvoiceRepository 56 rows>"
     assert_equal inspection, invoice_repository.inspect

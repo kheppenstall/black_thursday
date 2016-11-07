@@ -2,11 +2,13 @@ class Merchant
 
   attr_reader :id,
               :name,
-              :parent
+              :parent,
+              :created_at
 
   def initialize(data, parent = nil)
     @id = data[:id].to_i
     @name = data[:name]
+    @created_at = Time.parse(data[:created_at])
     @parent = parent
   end
 

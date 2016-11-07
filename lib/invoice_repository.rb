@@ -1,5 +1,6 @@
 require_relative 'invoice'
 require_relative 'csv_parser'
+require 'date'
 
 class InvoiceRepository
 
@@ -56,6 +57,12 @@ class InvoiceRepository
 
   def find_invoice_items(invoice_id)
     parent.find_invoice_items_by_invoice_id(invoice_id)
+  end
+
+  def find_all_by_date(date)
+    all.find_all do |invoice|
+      Date.parse(invoice.created_at.to_s) == Date.parse(date.to_s)
+    end
   end
 
   def inspect
