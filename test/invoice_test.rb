@@ -7,12 +7,12 @@ class InvoiceTest < Minitest::Test
 
   def setup
     @invoice = Invoice.new({
-      :id => '6',
-      :customer_id => '7',
-      :merchant_id => '8',
-      :status => "pending",
-      :created_at => Time.now.to_s,
-      :updated_at => Time.now.to_s},
+      :id            => '6',
+      :customer_id   => '7',
+      :merchant_id   => '8',
+      :status        => "pending",
+      :created_at    => Time.now.to_s,
+      :updated_at    => Time.now.to_s},
       Minitest::Mock.new)
   end
 

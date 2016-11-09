@@ -6,10 +6,10 @@ class Merchant
               :created_at
 
   def initialize(data, parent = nil)
-    @id = data[:id].to_i
-    @name = data[:name]
+    @id         = data[:id].to_i
+    @name       = data[:name]
     @created_at = Time.parse(data[:created_at])
-    @parent = parent
+    @parent     = parent
   end
 
   def items

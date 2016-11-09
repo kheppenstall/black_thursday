@@ -35,7 +35,7 @@ class AnalyticsTest < Minitest::Test
     assert_equal 12335747, merchants.last.id
   end
 
-  def test_top_revenue_earners_of_1_gives_earner
+  def test_top_revenue_earners_gives_20_by_default
     merchants = sales_analyst.top_revenue_earners
     assert_equal 20, merchants.length
     assert_equal 12334634, merchants.first.id

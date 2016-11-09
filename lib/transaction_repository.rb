@@ -11,14 +11,14 @@ class TransactionRepository
   def initialize(file, parent = nil)
     exp_date = :credit_card_expiration_date
     @all = parse(file).map do |row|
-      Transaction.new({:id => row[:id],
-                :invoice_id => row[:invoice_id],
-                :credit_card_number => row[:credit_card_number],
-                :credit_card_expiration_date => row[exp_date],
-                :result => row[:result],
-                :created_at => row[:created_at],
-                :updated_at => row[:updated_at]},
-                self)
+      Transaction.new({:id                          => row[:id],
+                       :invoice_id                  => row[:invoice_id],
+                       :credit_card_number          => row[:credit_card_number],
+                       :credit_card_expiration_date => row[exp_date],
+                       :result                      => row[:result],
+                       :created_at                  => row[:created_at],
+                       :updated_at                  => row[:updated_at]},
+                       self)
     end
     @parent = parent
   end
