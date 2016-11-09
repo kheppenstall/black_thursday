@@ -36,7 +36,7 @@ class MerchantAnalystTest < Minitest::Test
     assert_equal 0.70, sales_analyst.average_invoices_per_merchant
   end
 
-  def test_calculates_standard_deviation_of_average_items_per_merchant
+  def test_calculates_standard_deviation_of_average_invoices_per_merchant
      assert_equal 2.90, sales_analyst.average_invoices_per_merchant_standard_deviation
   end
 

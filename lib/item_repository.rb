@@ -10,13 +10,13 @@ class ItemRepository
 
   def initialize(file, parent = nil)
     @all = parse(file).map do |row|
-      Item.new({:id => row[:id],
-                :name => row[:name],
-                :unit_price => row[:unit_price],
-                :created_at => row[:created_at],
-                :updated_at => row[:updated_at],
-                :merchant_id => row[:merchant_id],
-                :description => row[:description]},
+      Item.new({:id           => row[:id],
+                :name         => row[:name],
+                :unit_price   => row[:unit_price],
+                :created_at   => row[:created_at],
+                :updated_at   => row[:updated_at],
+                :merchant_id  => row[:merchant_id],
+                :description  => row[:description]},
                 self)
     end
     @parent = parent
